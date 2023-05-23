@@ -23,6 +23,10 @@ router.post("/", async (req, res) => {
           }
         }
       `
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
     })
     // Extract the data from the GraphQL response
     const data = response.data.data
@@ -66,6 +70,10 @@ router.post("/new", async (req, res) => {
           }
         }
       `
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
     })
     // Extract the data from the GraphQL response
     const data = response.data.data
