@@ -7,7 +7,6 @@ const dbName = process.env.POSTGRES_DB_NAME
 const host = process.env.POSTGRES_HOST
 const port = process.env.POSTGRES_PORT
 const environment = process.env.NODE_ENV
-// console.log(environment)
 
 /**
  * @desc Creates a new sequelize instance of database

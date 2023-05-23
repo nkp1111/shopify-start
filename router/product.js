@@ -6,9 +6,16 @@ const router = express.Router()
 
 const graphql_url = process.env.GRAPHQL_URL
 
+
+/**
+ * @method POST /product/
+ * @desc Makes a post request to get all products from graphql server
+ * @returns [Product], array of product items
+ */
 router.post("/", async (req, res) => {
   try {
     const response = await axios.post(graphql_url, {
+      // graphql query to get all products
       query: `
         query {
           getAllProducts {
@@ -39,6 +46,11 @@ router.post("/", async (req, res) => {
 })
 
 
+/**
+ * @method POST /product/new/
+ * @desc Makes a post request to create new product
+ * @returns {error, success, product}
+ */
 router.post("/new", async (req, res) => {
   const ipAddress = req.ip
   const browser = req.get('User-Agent')
@@ -46,6 +58,7 @@ router.post("/new", async (req, res) => {
 
   try {
     const response = await axios.post(graphql_url, {
+      // graphql query to create new product
       query: `
         mutation {
           createNewProduct(

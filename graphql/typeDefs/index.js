@@ -32,6 +32,7 @@ const typeDefs = gql`
   }
 
   type ProductOutput {
+    "returns error/success message and Product object"
     error: String
     success: String
     product: Product
