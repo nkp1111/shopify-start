@@ -25,7 +25,8 @@ router.post("/", async (req, res) => {
       `
     }, {
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'x-apollo-operation-name': 'GET_ALL'
       }
     })
     // Extract the data from the GraphQL response
@@ -72,7 +73,8 @@ router.post("/new", async (req, res) => {
       `
     }, {
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'x-apollo-operation-name': "CREATE_NEW"
       }
     })
     // Extract the data from the GraphQL response
