@@ -26,13 +26,18 @@ const resolvers = {
           return { error: "Status can only be 'draft' or 'active'" }
         }
 
+        let allTags = []
+        if (tags) {
+          allTags = tags.split(",")
+        }
+
         const product = await Product.create({
           productId: uuidV4(),
           ipAddress,
           browser,
           title,
           description,
-          tags,
+          tags: allTags,
           status,
         })
 

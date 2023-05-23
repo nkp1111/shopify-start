@@ -4,6 +4,7 @@ const { expressMiddleware } = require("@apollo/server/express4")
 
 const { typeDefs, resolvers } = require("./graphql")
 const { sequelize, startDatabaseConnection } = require("./models")
+const { productRoutes } = require("./router")
 
 require("dotenv").config()
 const app = express()
@@ -23,6 +24,8 @@ const startApolloServer = async () => {
   await server.start()
 
   app.use("/graphql", expressMiddleware(server))
+
+  app.use("/product", productRoutes)
 
   app.listen(port, () => {
     console.log(`Server listening on port http://localhost:${port}/`)

@@ -26,9 +26,9 @@ const typeDefs = gql`
      - title - (string) required - title of the product
      - description - (string) - description of the product
      - status - (string) - current status of product
-     - tags - ([string]) - identity mark for filtering product
+     - tags - (string) - identity mark for filtering product; tag separated by comma
     """
-    createNewProduct(ipAddress: String!, browser: String!, title: String!, description: String, status: String, tags: [String]): ProductOutput
+    createNewProduct(ipAddress: String!, browser: String!, title: String!, description: String, status: String, tags: String): ProductOutput
   }
 
   type ProductOutput {
