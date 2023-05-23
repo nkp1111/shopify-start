@@ -1,12 +1,14 @@
 const express = require("express")
 const axios = require("axios")
+require("dotenv").config()
 
 const router = express.Router()
 
+const graphql_url = process.env.GRAPHQL_URL
 
 router.post("/", async (req, res) => {
   try {
-    const response = await axios.post('http://localhost:4000/graphql', {
+    const response = await axios.post(graphql_url, {
       query: `
         query {
           getAllProducts {
@@ -38,7 +40,7 @@ router.post("/new", async (req, res) => {
   const { title, description, tags, status } = req.body
 
   try {
-    const response = await axios.post('http://localhost:4000/graphql', {
+    const response = await axios.post(graphql_url, {
       query: `
         mutation {
           createNewProduct(
