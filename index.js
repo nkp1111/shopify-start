@@ -1,4 +1,5 @@
 const express = require("express")
+const cors = require("cors")
 const { ApolloServer } = require("@apollo/server")
 const { expressMiddleware } = require("@apollo/server/express4")
 
@@ -11,9 +12,9 @@ const app = express()
 
 const port = process.env.PORT || 4000
 
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-
 
 const startApolloServer = async () => {
   const server = new ApolloServer({
