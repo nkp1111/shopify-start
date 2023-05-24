@@ -42,9 +42,29 @@ const Product = sequelize.define("Product", {
       isIn: [["draft", "active"]]
     }
   },
+  // inventory the product belongs to
+  inventoryId: {
+    type: DataTypes.INTEGER
+  },
   // tags to filter product
   tags: {
     type: DataTypes.ARRAY(DataTypes.STRING),
+  },
+  //category of product
+  category: {
+    type: DataTypes.STRING
+  },
+  // cost price of product
+  costPrice: {
+    type: DataTypes.FLOAT
+  },
+  // selling price of product 
+  sellPrice: {
+    type: DataTypes.FLOAT
+  },
+  // quantity of product
+  quantity: {
+    type: DataTypes.INTEGER
   }
 });
 

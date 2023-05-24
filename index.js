@@ -8,6 +8,7 @@ const { sequelize, startDatabaseConnection } = require("./models")
 const { productRoutes } = require("./router")
 
 require("dotenv").config()
+
 const app = express()
 
 const port = process.env.PORT || 4000
@@ -28,8 +29,10 @@ const startApolloServer = async () => {
 
   await server.start()
 
+  // use expressMiddleware on graphql server route
   app.use("/graphql", expressMiddleware(server))
 
+  // listen on product route
   app.use("/product", productRoutes)
 
   app.get("/", (req, res) => {

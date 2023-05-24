@@ -1,6 +1,7 @@
 const { Sequelize } = require("sequelize")
 require("dotenv").config()
 
+// variables defined in env file
 const user = process.env.POSTGRES_USER
 const password = process.env.POSTGRES_PASSWORD
 const dbName = process.env.POSTGRES_DB_NAME
