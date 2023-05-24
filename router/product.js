@@ -14,6 +14,7 @@ const graphql_url = process.env.GRAPHQL_URL
  */
 router.post("/", async (req, res) => {
   try {
+    // fetching data from graphql server 
     const response = await axios.post(graphql_url, {
       // graphql query to get all products
       query: `
@@ -26,7 +27,12 @@ router.post("/", async (req, res) => {
             title,
             description,
             status,
-            tags
+            tags,
+            category,
+            costPrice, 
+            sellPrice,
+            createdAt,
+            updatedAt
           }
         }
       `
@@ -52,11 +58,16 @@ router.post("/", async (req, res) => {
  * @returns {error, success, product}
  */
 router.post("/new", async (req, res) => {
+  // ip address and browser information of client
   const ipAddress = req.ip
   const browser = req.get('User-Agent')
-  const { title, description, tags, status } = req.body
+
+  // product data sent by client 
+  // userId should be token to be taken from req.body after authentication
+  const { title, description, tags, status, category, costPrice, sellPrice, quantity, userId } = req.body
 
   try {
+    // fetching data from graphql server
     const response = await axios.post(graphql_url, {
       // graphql query to create new product
       query: `
@@ -66,8 +77,13 @@ router.post("/new", async (req, res) => {
             browser: "${browser}", 
             title: "${title}", 
             description: "${description}", 
-            status: "${status}",
+            status: "${status || "draft"}",
             tags: "${tags}"
+            category: "${category}"
+            costPrice: ${costPrice || 0}
+            sellPrice: ${sellPrice || 0}
+            quantity: ${quantity || 0}
+            userId: "${userId || "1"}"
           ) {
             error,
             success,
@@ -79,7 +95,11 @@ router.post("/new", async (req, res) => {
               title,
               description,
               status,
-              tags
+              tags,
+              category,
+              costPrice, 
+              sellPrice, 
+              quantity
             }
           }
         }
